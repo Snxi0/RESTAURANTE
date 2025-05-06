@@ -1,0 +1,53 @@
+body{
+    background-color: #000;
+}
+
+.underline{
+    width: 100%;
+    height: 10px;
+    background-color: #C9A14B;
+}
+.nav-imagen{
+    margin: 0;
+    padding: 0;
+    width: 200px;
+}
+.imagen{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.custom-table {
+    background-color: rgba(0, 0, 0, 0.85) ; /* negro con opacidad */
+    border: none;
+}
+
+.custom-table th,
+.custom-table td {
+    color: white ;
+    background-color: transparent ;
+}
+
+.custom-table thead th {
+    border-color: #444 ;
+}
+
+.custom-table tbody tr {
+    border-color: #444 ;
+}
+.btn-custom {
+    background-color: #b8860b;
+    color: white;
+    border: none;
+}
+
+.btn-custom:hover {
+    background-color: #d4af37;
+}
+
+.form-group label{
+    color: #b8860b;
+    font-size: 18px;
+    font-weight: bold;
+}
