@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +20,7 @@
 
 <nav class="navbar navbar-dark bg-black">
     <div class="imagen">
-        <a href="../crud/Crud.php" class="navbar-brand"><img class="nav-imagen" src="../img/Brasas.png" alt=""></a>
+        <a href="../crud/inicio.php" class="navbar-brand"><img class="nav-imagen" src="../img/Brasas.png" alt=""></a>
     </div>
     
 </nav>

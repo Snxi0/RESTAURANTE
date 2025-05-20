@@ -1,8 +1,14 @@
-<?php include("../crud/db.php")?><!--apenas inicie la apliacion empice a conectar la base de datos-->
+<?php include("db.php") ?><!--apenas inicie la apliacion empice a conectar la base de datos-->
 <?php	include("../includes/header.php")?>
 <?php	include("../includes/session_cd.php")?>
+<?php $activo = 'inicio'; ?>
 
-<?php $activo = 'platos'; ?>
+<?php  
+    if (!isset($_SESSION['cedula'])) {
+    header("Location: ../login/login.php");
+    exit();
+}
+?>
 
 
 
@@ -15,7 +21,7 @@
         
                 <ul class="nav nav-pills flex-column  align-items-center align-items-sm-start custom-ul" id="menu">
                     <li class="nav-item">
-                        <a href="../crud/inicio.php" class="nav-link align-middle px-0 custom-icon <?= esActivo('inicio') ?>">
+                        <a href="Crud.php" class="nav-link align-middle px-0 custom-icon <?= esActivo('inicio') ?>">
                             <i class="fs-4 bi-house"> Inicio</i> 
                             <span class="ms-1 d-none d-sm-inline text-white "></span>
                         </a>
@@ -65,74 +71,19 @@
             </div>
         </div>
         <div class="col py-3 custom-bd">
+            <div class="carousel">
+                      <div class="slides">
+                        <img src="../img/img-carrusel/2.png" alt="Imagen 1">
+                        <img src="../img/img-carrusel/4.png" alt="Imagen 2">
+                        <img src="../img/img-carrusel/3.png" alt="Imagen 3">
+                        <img src="../img/img-carrusel/1.png" alt="Imagen 3">
+                        <!-- Puedes agregar más imágenes -->
+                      </div>
+                    </div>
+
 
             <div class="container p-4 ">
-
-<div class="row">
-
-    <div class="col-md-4">  
-        
-    <?php  if(isset($_SESSION['message'])) {?>
-        <div class="alert alert-<?=$_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
-                <?= $_SESSION['message'] ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php 
-    unset($_SESSION['message']);
-    unset($_SESSION['message_type']);
-    //limpia los datos que tengo en secion
-    }?> <!-- verificar que existen los datos guardados y mostrar mensaj-->
-
-        <div class="card card-body bg-black">
-            <form action="../crud/save_task.php" method="POST">
-                <div class="form-group mt-3 " >
-                    <label>Titulo de registro</label>
-                    <input type="text" name="title" class="form-control" autofocus>
-                </div>
-                <div class="form-group mt-3">
-                    <label>Descripcion de registro</label>
-                    <textarea name="description" rows="2" class="form-control" ></textarea>
-                </div>
-                <input type="submit" class="btn btn-custom w-100 mt-3" name="save_task" value="Enviar">
-            </form>
-        </div>
-    </div>
-
-    <div class="col md-8 ">
-        <table class="table table-hover table-striped  custom-table">
-            <thead>
-                <tr >
-                    <th>TITULO</th> 
-                    <th>DESCRIPCION</th>
-                    <th>FECHA DE CREACION</th>
-                    <th>ACCIONES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                $query = "SELECT * FROM tarea";
-                $resultas = mysqli_query($conn, $query);
-
-                while($row = mysqli_fetch_array($resultas)){?> <tr>
-                    <td> <?php echo $row['titulo'] ?></td>
-                    <td> <?php echo $row['descripcion'] ?></td>
-                    <td> <?php echo $row['crearted_at'] ?></td>
-                    <td>
-                        <a href="../crud/edit.php?id=<?php echo $row['id']?>" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-marker "></i>
-                        </a>
-                        <a href="../crud/delete_task.php?id=<?php echo $row['id']?>"class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
-                        </a>
-                    </td>
-                    </tr>
-
-                <?php }?>
-            </tbody>
-        </table>
-    </div>
-</div>
-
+            </div>
 
 
 
@@ -141,3 +92,4 @@
 
 
 <?php	include("../includes/footer.php")?>
+

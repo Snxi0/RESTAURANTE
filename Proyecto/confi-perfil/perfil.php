@@ -1,10 +1,6 @@
-<?php include("../crud/db.php")?><!--apenas inicie la apliacion empice a conectar la base de datos-->
+<?php include("../crud/db.php") ?>
 <?php	include("../includes/header.php")?>
 <?php	include("../includes/session_cd.php")?>
-
-<?php $activo = 'platos'; ?>
-
-
 
 
 
@@ -27,7 +23,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../ingredientes/ingredientes.php" class="nav-link px-0 align-middle custom-icon <?= esActivo('ingredientes') ?>">
+                        <a href="" class="nav-link px-0 align-middle custom-icon <?= esActivo('ingredientes') ?>">
                             <i class="fs-4 bi bi-basket"> Ingredientes</i> <span class="ms-1 d-none d-sm-inline text-white"> </span></a>
                     </li>
                     <li>
@@ -65,79 +61,38 @@
             </div>
         </div>
         <div class="col py-3 custom-bd">
+        <div class="container p-4 ">
 
-            <div class="container p-4 ">
 
-<div class="row">
 
-    <div class="col-md-4">  
         
-    <?php  if(isset($_SESSION['message'])) {?>
-        <div class="alert alert-<?=$_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
-                <?= $_SESSION['message'] ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php 
-    unset($_SESSION['message']);
-    unset($_SESSION['message_type']);
-    //limpia los datos que tengo en secion
-    }?> <!-- verificar que existen los datos guardados y mostrar mensaj-->
-
-        <div class="card card-body bg-black">
-            <form action="../crud/save_task.php" method="POST">
-                <div class="form-group mt-3 " >
-                    <label>Titulo de registro</label>
-                    <input type="text" name="title" class="form-control" autofocus>
-                </div>
-                <div class="form-group mt-3">
-                    <label>Descripcion de registro</label>
-                    <textarea name="description" rows="2" class="form-control" ></textarea>
-                </div>
-                <input type="submit" class="btn btn-custom w-100 mt-3" name="save_task" value="Enviar">
-            </form>
-        </div>
+  <div class="container mt-5">
+    <div class="text-center mb-4">
+      <h2>Editar Perfil</h2>
     </div>
 
-    <div class="col md-8 ">
-        <table class="table table-hover table-striped  custom-table">
-            <thead>
-                <tr >
-                    <th>TITULO</th> 
-                    <th>DESCRIPCION</th>
-                    <th>FECHA DE CREACION</th>
-                    <th>ACCIONES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                $query = "SELECT * FROM tarea";
-                $resultas = mysqli_query($conn, $query);
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+        <!-- Imagen actual -->
+        <img src="https://github.com/mdo.png" alt="Foto de perfil" class="profile-img mb-3 r">
 
-                while($row = mysqli_fetch_array($resultas)){?> <tr>
-                    <td> <?php echo $row['titulo'] ?></td>
-                    <td> <?php echo $row['descripcion'] ?></td>
-                    <td> <?php echo $row['crearted_at'] ?></td>
-                    <td>
-                        <a href="../crud/edit.php?id=<?php echo $row['id']?>" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-marker "></i>
-                        </a>
-                        <a href="../crud/delete_task.php?id=<?php echo $row['id']?>"class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
-                        </a>
-                    </td>
-                    </tr>
+        <!-- Formulario -->
+        <form action="#" method="POST" enctype="multipart/form-data">
+          <div class="mb-3 text-start">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre . " " . $apellido; ?>">
+          </div>
 
-                <?php }?>
-            </tbody>
-        </table>
+          <div class="mb-3 text-start">
+            <label for="foto" class="form-label">Nueva Foto de Perfil</label>
+            <input type="file" class="form-control" id="foto" name="foto">
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">Guardar Cambios</button>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 
 
-
-
-
-
-
-
-<?php	include("../includes/footer.php")?>
+  <?php	include("../includes/footer.php")?>

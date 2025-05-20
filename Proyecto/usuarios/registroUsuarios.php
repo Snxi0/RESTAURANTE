@@ -2,7 +2,7 @@
 <?php	include("../includes/header.php")?>
 <?php	include("../includes/session_cd.php")?>
 
-<?php $activo = 'platos'; ?>
+<?php $activo = 'usuarios'; ?>
 
 
 
@@ -39,7 +39,7 @@
                             <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline text-white">-</span> </a>
                     </li>
                     <li>
-                        <a href="../usuarios/usuarios.php" class="nav-link px-0 align-middle custom-icon <?= esActivo('usuarios') ?>">
+                        <a href="#" class="nav-link px-0 align-middle custom-icon <?= esActivo('usuarios') ?>">
                             <i class="fs-4 bi-people"> Usuarios</i> <span class="ms-1 d-none d-sm-inline text-white"></span> </a>
                     </li>
                 </ul>
@@ -64,74 +64,110 @@
                 </div>
             </div>
         </div>
+
+
+        <!----------------------------------------- REGISTRO DE USUARIOS--------------------------------------->
+
+
         <div class="col py-3 custom-bd">
 
-            <div class="container p-4 ">
+            <div class="container p-4 "> 
 
-<div class="row">
+             <form action="crudUsuario/guardarUsuarios.php" method="POST">
+        <div class="m-5">
+            <div class="input-group">
+                <span class="input-group-text">Nombre y Apellido </span> 
+                        <input 
+                            type="text" 
+                            aria-label="First name" 
+                            class="form-control" 
+                            name="nombre">
 
-    <div class="col-md-4">  
+                        <input 
+                            type="text" 
+                            aria-label="Last name" 
+                            class="form-control" 
+                            name="apellido">
+                            <div class="invalid-feedback d-block" id="nombre-error">
+                            </div>
+                            <div class="invalid-feedback d-block" id="apellido-error">
+                            </div>
+
+
+
+            </div>
+    
+
+        </div>
         
-    <?php  if(isset($_SESSION['message'])) {?>
-        <div class="alert alert-<?=$_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
-                <?= $_SESSION['message'] ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="m-5">
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">Numero Cedula</span>
+
+                <input  
+                type="text"  
+                class="form-control" 
+                name="cedula">
+
+            </div>
+            <div class="invalid-feedback d-block" id="cedula-error"></div>
         </div>
-    <?php 
-    unset($_SESSION['message']);
-    unset($_SESSION['message_type']);
-    //limpia los datos que tengo en secion
-    }?> <!-- verificar que existen los datos guardados y mostrar mensaj-->
 
-        <div class="card card-body bg-black">
-            <form action="../crud/save_task.php" method="POST">
-                <div class="form-group mt-3 " >
-                    <label>Titulo de registro</label>
-                    <input type="text" name="title" class="form-control" autofocus>
-                </div>
-                <div class="form-group mt-3">
-                    <label>Descripcion de registro</label>
-                    <textarea name="description" rows="2" class="form-control" ></textarea>
-                </div>
-                <input type="submit" class="btn btn-custom w-100 mt-3" name="save_task" value="Enviar">
-            </form>
+        <div class="m-5">
+            <div class="input-group">
+                <span class="input-group-text">Contraseña</span>
+                <input type="password" class="form-control" name="password">
+            </div>
+            <div class="invalid-feedback d-block" id="password-error"></div>
+
         </div>
-    </div>
 
-    <div class="col md-8 ">
-        <table class="table table-hover table-striped  custom-table">
-            <thead>
-                <tr >
-                    <th>TITULO</th> 
-                    <th>DESCRIPCION</th>
-                    <th>FECHA DE CREACION</th>
-                    <th>ACCIONES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                $query = "SELECT * FROM tarea";
-                $resultas = mysqli_query($conn, $query);
+        <div class="m-5">
+            <div class="input-group">
+                <span class="input-group-text">Numero de telefono</span>
+                <input type="number" class="form-control" name="telefono">
+            </div>
+            <div class="invalid-feedback d-block" id="telefono-error"></div>
 
-                while($row = mysqli_fetch_array($resultas)){?> <tr>
-                    <td> <?php echo $row['titulo'] ?></td>
-                    <td> <?php echo $row['descripcion'] ?></td>
-                    <td> <?php echo $row['crearted_at'] ?></td>
-                    <td>
-                        <a href="../crud/edit.php?id=<?php echo $row['id']?>" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-marker "></i>
-                        </a>
-                        <a href="../crud/delete_task.php?id=<?php echo $row['id']?>"class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
-                        </a>
-                    </td>
-                    </tr>
+        </div>
 
-                <?php }?>
-            </tbody>
-        </table>
-    </div>
-</div>
+        <div class="m-5">
+            <div class="input-group">
+                <span class="input-group-text">Fecha de Nacimiento</span>
+                <input type="date" aria-label="First name" class="form-control" name="fechaNacimiento">
+            </div>
+            <div class="invalid-feedback d-block" id="fecha-error"></div>
+        </div>
+
+        <div class="m-5">
+        <div class="input-group">
+        <label class="input-group-text">Genero</label>
+        <select class="form-select" id="inputGroupSelect01" name="genero">
+            <option selected>Elige</option>
+            <option value="1">Hombre</option>
+            <option value="2">Mujer</option>
+        </select>
+        </div>
+        </div>
+
+        <div class="form-group m-5">
+            <label for="inputGroupSelect01">Selecciona un rol:</label>
+            <select class="form-select" id="inputGroupSelect01" name="rol">
+              <option selected>Elige</option>
+              <?php
+                $query = "SELECT rol FROM usuarios";
+                $resultado = mysqli_query($conn, $query);
+                while ($fila = mysqli_fetch_array($resultado)) {
+                  echo '<option value="' . $fila["rol"] . '">' . ucfirst($fila["rol"]) . '</option>';
+                }
+              ?>
+            </select>
+          </div>
+
+  <div class="m-5">
+    <button type="submit" name="guardarUsuario"class="btn btn-primary">Enviar</button>
+  </div>
+</form>
 
 
 
@@ -141,3 +177,7 @@
 
 
 <?php	include("../includes/footer.php")?>
+
+
+
+
